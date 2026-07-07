@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SmartSpend — Audit Ledger</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">$</span>
+      <div class="brand-text">
+        <h1>SmartSpend</h1>
+        <p class="brand-sub">Audit Ledger</p>
+      </div>
+    </div>
+    <div class="live-pill"><span class="dot"></span>Live feed</div>
+  </header>
+
+  <main>
+    <section id="summary-card">
+      <span class="eyebrow">Flagged this cycle</span>
+      <div class="summary-top">
+        <span id="risky-count" class="big-number">–</span>
+        <p id="summary-text">Reading the ledger…</p>
+      </div>
+      <div id="summary-stats"></div>
+    </section>
+
+    <section id="table-section">
+      <div class="table-heading">
+        <h2>Transaction Ledger</h2>
+        <span id="row-count" class="table-subcount"></span>
+      </div>
+      <table id="transactions-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Department</th>
+            <th>Vendor</th>
+            <th class="num">Amount</th>
+            <th class="num">Deviation</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="transactions-body">
+          <tr><td colspan="6">Reading the ledger…</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
