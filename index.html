@@ -2,57 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SmartSpend — Audit Ledger</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartSpend — Premium Audit Ledger</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
-  <header class="topbar">
-    <div class="brand">
-      <span class="brand-mark">$</span>
-      <div class="brand-text">
-        <h1>SmartSpend</h1>
-        <p class="brand-sub">Audit Ledger</p>
+  <div class="app-container">
+    
+    <nav class="navbar">
+      <div class="brand">
+        <div class="brand-logo">$</div>
+        <div class="brand-text">
+          <h1>SmartSpend</h1>
+          <p>Audit Ledger</p>
+        </div>
       </div>
-    </div>
-    <div class="live-pill"><span class="dot"></span>Live feed</div>
-  </header>
+      <div class="live-pill">
+        <span class="dot"></span> Live Feed
+      </div>
+    </nav>
 
-  <main>
-    <section id="summary-card">
-      <span class="eyebrow">Flagged this cycle</span>
-      <div class="summary-top">
-        <span id="risky-count" class="big-number">–</span>
-        <p id="summary-text">Reading the ledger…</p>
-      </div>
-      <div id="summary-stats"></div>
-    </section>
+    <main class="content-area">
+      
+      <div class="dashboard-grid">
+        
+        <section id="summary-card" class="card highlight-card">
+          <span class="eyebrow">Flagged This Cycle</span>
+          <div class="summary-top">
+            <span id="risky-count" class="big-number">—</span>
+            <p id="summary-text">Reading the statistical ledger...</p>
+          </div>
+          <div id="summary-stats" class="stats-subtext"></div>
+        </section>
 
-    <section id="table-section">
-      <div class="table-heading">
-        <h2>Transaction Ledger</h2>
-        <span id="row-count" class="table-subcount"></span>
+        <section class="card ai-card">
+          <span class="eyebrow text-indigo">SmartSpend AI</span>
+          <p class="ai-description">
+            "Z-Score algorithms group expenses by operational department to isolate anomalies. Large deviations display context below."
+          </p>
+        </section>
+        
       </div>
-      <table id="transactions-table">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Department</th>
-            <th>Vendor</th>
-            <th class="num">Amount</th>
-            <th class="num">Deviation</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody id="transactions-body">
-          <tr><td colspan="6">Reading the ledger…</td></tr>
-        </tbody>
-      </table>
-    </section>
-  </main>
+
+      <section class="card table-card">
+        <div class="table-heading">
+          <h2>Transaction Ledger</h2>
+          <span id="row-count" class="table-subcount">0 entries</span>
+        </div>
+        
+        <div class="table-wrapper">
+          <table id="transactions-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Department</th>
+                <th>Vendor</th>
+                <th class="num">Amount</th>
+                <th class="num">Deviation</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="transactions-body">
+              </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
 
   <script src="/static/script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      loadSummary();
+      loadTransactions();
+    });
+  </script>
 </body>
 </html>
