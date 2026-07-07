@@ -1,241 +1,272 @@
 /* ============================================================
-   SmartSpend — Audit Ledger
-   Design tokens
-   ------------------------------------------------------------
-   Color:
-     --bg          #0F1420  deep navy-charcoal background
-     --surface     #171D2B  card / table surface
-     --surface-2   #1D2536  slightly raised surface (header rows)
-     --line        #252D42  hairline dividers
-     --text        #E8EAF0  primary text
-     --text-muted  #8993A8  secondary / caption text
-     --accent-risk #F2545B  coral — flags risky rows
-     --accent-safe #3ECF8E  green — normal / safe
-     --accent-warn #E8B44C  amber — used sparingly in the summary card
-   Type:
-     Display : 'Space Grotesk'  (brand name, big number)
-     Body    : 'Inter'          (everything else)
-     Mono    : 'IBM Plex Mono'  (all numeric data — amounts, z-scores)
+   SmartSpend — Premium Global FinTech Theme Design System
    ============================================================ */
 
 :root {
-  --bg: #0F1420;
-  --surface: #171D2B;
-  --surface-2: #1D2536;
-  --line: #252D42;
-  --text: #E8EAF0;
-  --text-muted: #8993A8;
-  --accent-risk: #F2545B;
-  --accent-safe: #3ECF8E;
-  --accent-warn: #E8B44C;
+  --bg: #0b0f19;
+  --surface: #121826;
+  --surface-card: #161f30;
+  --border: rgba(255, 255, 255, 0.06);
+  --text: #f3f4f6;
+  --text-muted: #9ca3af;
+  --accent-risk: #f2545b;
+  --accent-safe: #3ecf8e;
+  --accent-indigo: #6366f1;
 }
 
-* { box-sizing: border-box; }
-
-body {
-  font-family: 'Inter', -apple-system, sans-serif;
-  background: var(--bg);
-  color: var(--text);
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  -webkit-font-smoothing: antialiased;
 }
 
-/* ---------- Top bar ---------- */
-.topbar {
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.app-container {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Navbar Layout */
+.navbar {
+  display: flex;
   justify-content: space-between;
-  padding: 22px 40px;
-  border-bottom: 1px solid var(--line);
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(18, 24, 38, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
-.brand-mark {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 20px;
-  font-weight: 500;
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  background: var(--surface-2);
-  border: 1px solid var(--line);
-  color: var(--accent-safe);
+.brand-logo {
+  background: var(--accent-indigo);
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
 .brand-text h1 {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
-  margin: 0;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
-.brand-sub {
-  margin: 2px 0 0;
-  font-size: 12px;
+.brand-text p {
+  font-size: 0.75rem;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
 }
 
 .live-pill {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
-  color: var(--text-muted);
-  border: 1px solid var(--line);
+  background: rgba(62, 207, 142, 0.1);
+  color: var(--accent-safe);
   padding: 6px 12px;
   border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
-.dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
+.live-pill .dot {
+  width: 6px;
+  height: 6px;
   background: var(--accent-safe);
-  box-shadow: 0 0 0 3px rgba(62, 207, 142, 0.15);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
 }
 
-/* ---------- Main layout ---------- */
-main {
-  max-width: 880px;
-  margin: 36px auto;
-  padding: 0 24px 60px;
+/* Main Workspace Framework */
+.content-area {
+  max-width: 1200px;
+  width: 100%;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-cols: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .dashboard-grid {
+    grid-template-cols: 2fr 1fr;
+  }
+}
+
+/* Card Design Tokens */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
 }
 
 .eyebrow {
-  font-size: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: var(--text-muted);
 }
 
-/* ---------- Summary card ---------- */
-#summary-card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--accent-warn);
-  border-radius: 10px;
-  padding: 24px 28px;
-  margin-bottom: 28px;
-}
+.text-indigo { color: var(--accent-indigo); }
 
 .summary-top {
   display: flex;
   align-items: baseline;
   gap: 20px;
-  margin-top: 10px;
+  margin-top: 0.75rem;
 }
 
 .big-number {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 44px;
+  font-size: 3.5rem;
   font-weight: 700;
-  color: var(--accent-warn);
-  line-height: 1;
-  flex-shrink: 0;
+  color: var(--accent-risk);
 }
 
 #summary-text {
-  margin: 0;
-  font-size: 14.5px;
-  line-height: 1.55;
-  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #e5e7eb;
 }
 
-#summary-stats {
-  margin-top: 14px;
-  font-size: 12.5px;
-  color: var(--text-muted);
-  font-family: 'IBM Plex Mono', monospace;
+.ai-card {
+  background: linear-gradient(135deg, #131a2e 0%, #1a1636 100%);
+  border-color: rgba(99, 102, 241, 0.15);
 }
 
-/* ---------- Table section ---------- */
-#table-section {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 22px 28px 8px;
+.ai-description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #c7d2fe;
+  margin-top: 0.5rem;
+}
+
+/* Beautiful Data Tables */
+.table-card {
+  padding: 0;
 }
 
 .table-heading {
+  padding: 1.25rem 1.5rem;
   display: flex;
-  align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 6px;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
 }
 
 .table-heading h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px;
-  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .table-subcount {
-  font-size: 12px;
+  font-size: 0.8rem;
   color: var(--text-muted);
-  font-family: 'IBM Plex Mono', monospace;
+  background: rgba(255,255,255,0.04);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13.5px;
+  text-align: left;
+  font-size: 0.9rem;
 }
 
 th {
-  text-align: left;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 14px 16px;
   color: var(--text-muted);
   font-weight: 500;
-  padding: 12px 10px;
-  border-bottom: 1px solid var(--line);
-}
-
-th.num, td.num {
-  text-align: right;
-  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border);
 }
 
 td {
-  padding: 11px 10px;
-  border-bottom: 1px solid var(--line);
-  color: var(--text);
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  color: #d1d5db;
 }
 
 tbody tr:last-child td {
   border-bottom: none;
 }
 
-tr.risky {
-  border-left: 3px solid var(--accent-risk);
+tbody tr:hover td {
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.num {
+  font-family: 'IBM Plex Mono', monospace;
+  text-align: right;
+}
+
+/* Row Highlights & Status Pills */
+tr.risky td {
+  background: rgba(242, 84, 91, 0.02);
 }
 
 tr.risky td:first-child {
-  padding-left: 7px;
+  border-left: 3px solid var(--accent-risk);
 }
 
-/* Status pills instead of raw emoji text */
 .status-pill {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-size: 11.5px;
-  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
 .status-pill.risky {
@@ -244,43 +275,37 @@ tr.risky td:first-child {
 }
 
 .status-pill.safe {
-  background: rgba(62, 207, 142, 0.08);
+  background: rgba(62, 207, 142, 0.1);
   color: var(--accent-safe);
 }
 
-/* Small inline deviation bar — the signature element:
-   a horizontal bar whose length maps to |z-score|, giving an
-   at-a-glance sense of how far outside normal range a charge is */
+/* Statistical Deviation Custom Bars */
 .z-cell {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 8px;
+  gap: 10px;
 }
 
 .z-bar-track {
-  width: 46px;
-  height: 4px;
-  background: var(--line);
-  border-radius: 2px;
+  width: 60px;
+  height: 6px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 3px;
   overflow: hidden;
 }
 
 .z-bar-fill {
   height: 100%;
-  border-radius: 2px;
-  background: var(--text-muted);
+  background: var(--accent-safe);
+  border-radius: 3px;
 }
 
 .z-bar-fill.risky {
   background: var(--accent-risk);
 }
 
-@media (max-width: 640px) {
-  .topbar { padding: 18px 20px; }
-  main { padding: 0 14px 40px; margin-top: 20px; }
-  #summary-card, #table-section { padding: 18px; }
-  .big-number { font-size: 34px; }
-  th, td { padding: 9px 6px; font-size: 12.5px; }
-  .z-bar-track { width: 26px; }
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
