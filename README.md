@@ -51,27 +51,5 @@ set ANTHROPIC_API_KEY=your-key-here          # Windows (cmd)
 python app.py
 ```
 
-Then open **http://127.0.0.1:5000** in your browser.
-
-> No API key? No problem — you'll still get a solid rule-based summary,
-> and everything else (table, red-flag highlighting, math) works identically.
-
-## Talking points for interviews
-
-- "I built a local pipeline that moves financial records from a relational
-  database, applies statistical logic (z-scores), and structures the output
-  for an LLM API."
-- Explains **why z-scores**: a flat "amount > $5000" rule doesn't work because
-  departments spend very differently — Engineering's $9,000 AWS bill is normal,
-  but a $9,000 charge in HR is a huge outlier. Z-scores compare each transaction
-  to its *own department's* normal range.
-- Explains the **graceful degradation** design: the AI call is wrapped in a
-  try/except with a rule-based fallback, so a missing API key or network issue
-  never breaks the app — a good example of defensive coding.
-
-## Ideas to extend it later
-
-- Swap the flat file for a real Postgres/MySQL database.
-- Add a date-range filter or department filter on the frontend.
 - Let users upload their own CSV of transactions instead of using seed data.
 - Add authentication so different managers see only their department.
