@@ -34,22 +34,27 @@ smartspend/
 └── README.md
 ```
 
-## Setup & running it
+## 🛠️ Tech Stack
 
-```bash
-# 1. Install dependencies
-pip install -r requirements.txt
+- **Backend:** Python 3.x, Flask
+- **Database:** SQLite
+- **AI Integration:** Anthropic API (Claude)
+- **Frontend:** HTML5, CSS3, JavaScript (Fetch API)
 
-# 2. Create the database (only needs to be run once, or again to reset data)
-python init_db.py
+## 📡 API Endpoints
 
-# 3. (Optional) enable real AI summaries by setting your Anthropic API key
-export ANTHROPIC_API_KEY="your-key-here"     # macOS/Linux
-set ANTHROPIC_API_KEY=your-key-here          # Windows (cmd)
+| Endpoint | Method | Description |
+| :--- | :--- | :--- |
+| `GET /api/transactions` | GET | Returns all transactions with calculated z-scores and risk flags |
+| `GET /api/summary` | GET | Returns the AI-generated or fallback rule-based risk summary |
 
-# 4. Start the server
-python app.py
-```
+## 🚀 Future Roadmap
 
-- Let users upload their own CSV of transactions instead of using seed data.
-- Add authentication so different managers see only their department.
+- [ ] Support for custom CSV/Excel transaction uploads
+- [ ] Configurable z-score threshold settings via GUI
+- [ ] Multi-currency support
+- [ ] Export flagged report as PDF/CSV
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
